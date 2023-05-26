@@ -1,0 +1,54 @@
+{
+  "id": 1,
+  "name": "A Gathering of Heroes",
+  "volume": "Secret Defenders",
+  "cover_date": "1993-03-31",
+  "issue_number": "1",
+  "publisher": "Marvel",
+  "description": "<p><em style=\"font-size:16px;line-height:25px;font-family:'Helvetica Neue', HelveticaNeue, Arial, sans-serif;\">A weakened Doctor Strange still has enough power to peek into the future; what he knows tells him Nomad, Wolverine, Spider-Woman and Darkhawk will be instrumental in stopping an onrushing demonic horror. Of course all four are willing to help. Plus, what does this have to do with the recent upswing in teenage crime? Probably a lot.</em></p>",
+  "value": "1.00",
+  "date_acquired": "1993-04-14",
+  "grade": "9.9",
+  "key": "No",
+  "variant": "No",
+  "image": {
+    "small_url": [
+      "https://comicvine.gamespot.com/a/uploads/scale_small/0/4/33122-5044-36977-1-secret-defenders-th.jpg"
+    ],
+    "screen_url": [
+      "https://comicvine.gamespot.com/a/uploads/scale_small/0/4/33122-5044-36977-1-secret-defenders-th.jpg"
+    ]
+  },
+  "collections": ["Marvel", "Secret Defenders"],
+  "character_credits": [
+    "Beast",
+    "Darkhawk",
+    "Decimator",
+    "Doctor Strange",
+    "Dreadlox",
+    "Ghost Rider (Blaze)",
+    "Ghost Rider (Ketch)",
+    "Hellcat",
+    "Hellstorm",
+    "Hulk",
+    "Jack Monroe",
+    "Julia Carpenter",
+    "Julia Winters",
+    "Lilith",
+    "Macabre",
+    "Namor",
+    "Nighthawk",
+    "Professor Power",
+    "Punisher",
+    "Rachel Carpenter",
+    "Sabretooth",
+    "Satannish",
+    "Silver Surfer",
+    "Spider-Man",
+    "Stasis",
+    "Tokamak",
+    "Valkyrie",
+    "Wolverine"
+  ],
+  "comicVineID": "36977"
+}

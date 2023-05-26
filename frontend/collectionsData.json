@@ -1,0 +1,50 @@
+[
+  {
+    "value": "DC",
+    "label": "DC"
+  },
+  {
+    "value": "Marvel",
+    "label": "Marvel"
+  },
+  {
+    "value:": "Comic Book Day 2019",
+    "label": "Comic Book Day 2019"
+  },
+  {
+    "value": "Dark Horse",
+    "label": "Dark Horse"
+  },
+  {
+    "value": "Horror",
+    "label": "Horror"
+  },
+  {
+    "value": "Image",
+    "label": "Image"
+  },
+  {
+    "value:": "Independent",
+    "label": "Independent"
+  },
+  {
+    "value:": "Infinity Gauntlet",
+    "label": "Infinity Gauntlet"
+  },
+  {
+    "value:": "Infinity War",
+    "label": "Infinity War"
+  },
+  {
+    "value:": "Secret Wars",
+    "label": "Secret Wars"
+  },
+  {
+    "value:": "Secret Wars II",
+    "label": "Secret Wars II"
+  },
+  {
+    "value:": "Secret Wars 2015",
+    "label": "Secret Wars 2015"
+  }
+]

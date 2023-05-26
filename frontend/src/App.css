@@ -1,0 +1,22 @@
+:root {
+  --primary: #0a2e36;
+  --secondary: #85e9ff;
+  --comicGreen: #0a2e36;
+  --comicGreenHover: #0a2e36b3;
+  --white: #ffffff;
+  --bodyLink: #f0f0f0;
+}
+
+body {
+  background: #efefef;
+  min-height: 100vh;
+}
+
+div.main-container a {
+  font-weight: bold;
+  color: var(--bodyLine);
+}
+
+div.main-container a:hover {
+  text-decoration: underline;
+}
