@@ -1,18 +1,7 @@
 const express = require("express");
-const cors = require("cors");
-const config = require("./config");
-const apiRouter = require("./api-router");
-
-const server = express();
-
-server.use(cors());
-server.use(express.json());
-server.use("/api", apiRouter);
-
-server.get("/", (req, res) => {
-  res.send("Hello Vercel");
+const app = express();
+app.all("/", (req, res) => {
+  console.log("Just got a request!");
+  res.send("Yo!");
 });
-
-server.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`);
-});
+app.listen(process.env.PORT || 3000);
