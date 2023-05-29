@@ -1,4 +1,3 @@
-export const PORT = process.env.PORT ?? "8080";
-export const HOST = process.env.HOST ?? "localhost";
-
-export const API_SERVER_URL = `http://${HOST}:${PORT}/api`;
+//export const PORT = import.meta.env.PORT ?? "8080";
+export const HOST = import.meta.env.VITE_HOST ?? "localhost:8080";
+export const API_SERVER_URL = `http://${HOST}/api`;
