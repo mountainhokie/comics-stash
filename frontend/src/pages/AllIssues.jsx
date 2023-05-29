@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import { fetchIssues } from "../utility/api-client";
 import IssueRow from "../components/IssueRow";
+import Pagination from "../components/Pagination";
 
 export default function AllIssues() {
   const [issues, setIssues] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(20);
 
   useEffect(() => {
     fetchIssues().then((issues) => {
       setIssues(issues);
     });
   }, []);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentIssues = issues.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginateFront = () => setCurrentPage(currentPage + 1);
+  const paginateBack = () => setCurrentPage(currentPage - 1);
 
   return (
     <div className="collection mt-16 mx-auto max-w-screen-lg pl-4 pr-4">
@@ -37,7 +49,7 @@ export default function AllIssues() {
             </tr>
           </thead>
           <tbody>
-            {issues.map((issue, i) => {
+            {currentIssues.map((issue, i) => {
               return (
                 <IssueRow issue={issue} isOdd={i % 2 !== 0} key={issue.id} />
               );
@@ -45,6 +57,13 @@ export default function AllIssues() {
           </tbody>
         </table>
       </div>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={issues.length}
+        paginateBack={paginateBack}
+        paginateFront={paginateFront}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   addIssueQuick,
   searchForIssueDate,
   searchForVolume,
+  searchForSeriesNameIssueNum,
 } from "../utility/api-client";
 import Toast from "../components/toast/Toast";
 
@@ -45,6 +46,15 @@ export default function SearchResults() {
         searchForIssueDate(location.state, searchType).then((results) => {
           setSearchResults(results.d.results);
         });
+        break;
+      case "search-general":
+        setLinkType("issue");
+        setSearchTerm(location.state.search);
+        searchForSeriesNameIssueNum(location.state, searchType).then(
+          (results) => {
+            setSearchResults(results.d.results);
+          }
+        );
         break;
       default:
         setSearchTerm(location.state.search);
@@ -104,7 +114,8 @@ export default function SearchResults() {
 
                 <div className="flex items-center justify-between px-3 py-2 bg-gray-200 dark:bg-gray-700">
                   {(searchType === "search-date" ||
-                    searchType === "search-issue") && (
+                    searchType === "search-issue" ||
+                    searchType === "search-general") && (
                     <>
                       <span className="font-bold text-gray-800 dark:text-gray-200">
                         # {series.issue_number}

@@ -5,12 +5,14 @@ export default function AdvancedSearch() {
   const formRef = useRef();
   const formRef2 = useRef();
   const formRef3 = useRef();
+  const formRef4 = useRef();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let data = {};
+    let searchQuery;
     const filterType = e.target.id;
 
     switch (filterType) {
@@ -30,6 +32,13 @@ export default function AdvancedSearch() {
             issue_name: data.get("issue-name"),
             issue_number: data.get("issue-number"),
           },
+        });
+        break;
+      case "search-general":
+        data = new FormData(formRef4.current);
+        searchQuery = data.get("series-name") + " " + data.get("issue-number");
+        navigate(`/search-results/${filterType}`, {
+          state: { search: searchQuery },
         });
         break;
       default:
@@ -193,7 +202,73 @@ export default function AdvancedSearch() {
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="issue-number"
+                id="issue-number2"
+                name="issue-number"
+                type="number"
+                placeholder="Ex: 1"
+              />
+            </div>
+            <div className="flex px-3">
+              <button
+                className="inline-flex items-center bg-[--comicGreen] hover:bg-[--comicGreenHover] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                <svg
+                  className="mr-2 h-5 w-5 text-white"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                  <circle cx="10" cy="10" r="7" />{" "}
+                  <line x1="21" y1="21" x2="15" y2="15" />
+                </svg>
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <form
+          id="search-general"
+          className="w-full"
+          onSubmit={handleSubmit}
+          ref={formRef4}
+        >
+          <div className="flex flex-wrap -mx-3 mb-10 md:mb-20">
+            <h3 className="text-2xl px-3 mb-6">
+              Search for issue by: Issue Name and Number
+            </h3>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="series-name"
+              >
+                Series Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="series-name"
+                name="series-name"
+                type="text"
+                placeholder="Secret Defenders"
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="issue-number3"
+              >
+                Issue Number
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="issue-number3"
                 name="issue-number"
                 type="number"
                 placeholder="Ex: 1"

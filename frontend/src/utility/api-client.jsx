@@ -54,9 +54,23 @@ export const searchForIssueNameNum = async (searchQuery, searchType) => {
   return resp.data;
 };
 
+// Calls Comic Vine API searching for an Issue by a Series and Issue Number
+export const searchForSeriesNameIssueNum = async (searchQuery, searchType) => {
+  const resp = await axios.get(
+    `${API_SERVER_URL}/search-results/${searchType}`,
+    {
+      params: { searchQuery: searchQuery.search, searchType: searchType },
+    }
+  );
+  return resp.data;
+};
+
 // Gets a Specific Volume by ID from Comic Vine API
-export const getIssuesForVolume = async (searchQuery) => {
-  const resp = await axios.get(`${API_SERVER_URL}/volume/${searchQuery}`);
+export const getIssuesForVolume = async (searchQuery, pageNum = 1) => {
+  //pageNum = 2;
+  const resp = await axios.get(
+    `${API_SERVER_URL}/volume/${searchQuery}?page=${pageNum}`
+  );
   return resp.data;
 };
 

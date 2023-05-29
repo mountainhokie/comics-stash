@@ -2,19 +2,26 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { addIssueQuick, getIssuesForVolume } from "../utility/api-client";
 import Toast from "../components/toast/Toast";
+import Pagination from "../components/Pagination";
 
 export default function Volume() {
+  const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
   const [listOfToasts, setListOfToasts] = useState([]);
   const [toastType, setToastType] = useState("");
   const [toastTitle, setToastTitle] = useState("Info");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalIssues, setTotalIssues] = useState(0);
+  const [postsPerPage] = useState(100);
   const { volumeID } = useParams();
 
   useEffect(() => {
-    getIssuesForVolume(volumeID).then((results) => {
+    getIssuesForVolume(volumeID, currentPage).then((results) => {
+      setTotalIssues(results.d.number_of_total_results);
       setVolume(results.d.results);
+      setLoading(false);
     });
-  }, []);
+  }, [volumeID, currentPage]);
 
   async function handleAddIssue(issue) {
     addIssueQuick(issue.id).then(() => {
@@ -23,6 +30,16 @@ export default function Volume() {
       setListOfToasts([...listOfToasts, "success"]);
     });
   }
+
+  // Change page
+  const paginateFront = () => {
+    setLoading(true);
+    setCurrentPage(currentPage + 1);
+  };
+  const paginateBack = () => {
+    setLoading(true);
+    setCurrentPage(currentPage - 1);
+  };
 
   return (
     <>
@@ -81,6 +98,28 @@ export default function Volume() {
             </div>
           ))}
         </div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={totalIssues}
+          paginateBack={paginateBack}
+          paginateFront={paginateFront}
+          currentPage={currentPage}
+        />
+        {loading && (
+          <div className="bg-gray-900 bg-opacity-90 text-white justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              <div>Loading</div>
+              <div
+                className="ml-3 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <Toast
         toastList={listOfToasts}

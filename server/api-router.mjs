@@ -12,6 +12,9 @@ router.use(express.json());
 
 // Get All Issues
 router.get("/issues", async (req, res) => {
+  const pagination = req.body.pagination ? parseInt(req.body.pagination) : 10;
+  const pageNumber = req.body.page ? parseInt(req.body.page) : 1;
+
   // get the data from MongoDB
   const client = await connectClient();
   const issues = await client
@@ -25,7 +28,9 @@ router.get("/issues", async (req, res) => {
       publisher: 1,
       _id: 0,
     })
+    // .skip((pageNumber - 1) * pagination)
     .sort({ "volume": 1 })
+    // .limit(pagination)
     .toArray();
   res.send({ issues });
 });
@@ -71,8 +76,11 @@ router.get("/search-results/:searchType", async (req, res) => {
     case "search-issue":
       url = `${process.env.COMIC_BASE_URL}issues/?api_key=${process.env.COMIC_API_KEY}&format=json&sort=name:asc&filter=name:${req.query.searchQuery.issue_name},issue_number:${req.query.searchQuery.issue_number}`;
       break;
+    case "search-general":
+      url = `${process.env.COMIC_BASE_URL}search/?api_key=${process.env.COMIC_API_KEY}&format=json&sort=name:asc&resources=issue&resource_type=issue&query=${req.query.searchQuery}`;
+      break;
     default:
-      url = `${process.env.COMIC_BASE_URL}search/?api_key=${process.env.COMIC_API_KEY}&format=json&sort=name:asc&resources=volume&query=${req.query.searchQuery}`;
+      url = `${process.env.COMIC_BASE_URL}search/?api_key=${process.env.COMIC_API_KEY}&format=json&sort=name:asc&resources=volume,issue&query=${req.query.searchQuery}`;
       break;
   }
 
@@ -90,7 +98,9 @@ router.get("/search-results/:searchType", async (req, res) => {
 });
 
 router.get("/volume/:volumeID", async (req, res) => {
-  const url = `${process.env.COMIC_BASE_URL}issues/?api_key=${process.env.COMIC_API_KEY}&format=json&filter=volume:${req.params.volumeID}&sort=id:asc`;
+  const pageNum = req.query.page;
+  const offset = (pageNum - 1) * 100;
+  const url = `${process.env.COMIC_BASE_URL}issues/?api_key=${process.env.COMIC_API_KEY}&format=json&filter=volume:${req.params.volumeID}&sort=cover_date:asc&offset=${offset}`;
 
   axios({
     method: "get",
