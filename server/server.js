@@ -10,7 +10,7 @@ server.use(express.json());
 server.use("/api", apiRouter);
 
 server.get("/", (req, res) => {
-  res.send("Hello");
+  res.send("Hello Vercel");
 });
 
 server.listen(config.PORT, () => {
