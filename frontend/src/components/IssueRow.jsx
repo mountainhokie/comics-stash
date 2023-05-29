@@ -17,7 +17,7 @@ export default function IssueRow({ issue, isOdd }) {
       <td className="px-6 py-4">{issue.publisher}</td>
       <td className="px-6 py-4">
         <Link
-          to={`/issue/${issue.comicVineID}`}
+          to={`/issue/${issue.id}`}
           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
         >
           Edit
