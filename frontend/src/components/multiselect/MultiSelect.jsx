@@ -78,8 +78,8 @@ const MultiSelect = ({
     if (isMulti) {
       return (
         <div className="multiselect-tags">
-          {selectedValue.map((option) => (
-            <div key={option.value} className="multiselect-tag-item">
+          {selectedValue.map((option, i) => (
+            <div key={option.value + i} className="multiselect-tag-item">
               {option.label}
               <span
                 onClick={(e) => onTagRemove(e, option)}
