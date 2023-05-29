@@ -15,24 +15,28 @@ router.get("/issues", async (req, res) => {
   const pagination = req.body.pagination ? parseInt(req.body.pagination) : 10;
   const pageNumber = req.body.page ? parseInt(req.body.page) : 1;
 
-  // get the data from MongoDB
-  const client = await connectClient();
-  const issues = await client
-    .collection("issues")
-    .find()
-    .project({
-      id: 1,
-      volume: 1,
-      name: 1,
-      issue_number: 1,
-      publisher: 1,
-      _id: 0,
-    })
-    // .skip((pageNumber - 1) * pagination)
-    .sort({ "volume": 1 })
-    // .limit(pagination)
-    .toArray();
-  res.send({ issues });
+  try {
+    // get the data from MongoDB
+    const client = await connectClient();
+    const issues = await client
+      .collection("issues")
+      .find()
+      .project({
+        id: 1,
+        volume: 1,
+        name: 1,
+        issue_number: 1,
+        publisher: 1,
+        _id: 0,
+      })
+      // .skip((pageNumber - 1) * pagination)
+      .sort({ "volume": 1 })
+      // .limit(pagination)
+      .toArray();
+    res.send({ issues });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
 });
 
 // Get from MongoDB by Issue ID using Comic Vine's ID
