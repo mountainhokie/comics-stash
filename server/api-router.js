@@ -10,6 +10,11 @@ const router = express.Router();
 router.use(cors());
 router.use(express.json());
 
+// Test Vercel
+router.get("/tests", async (req, res) => {
+  res.json({ message: "Hello, Test!" });
+});
+
 // Get All Issues
 router.get("/issues", async (req, res) => {
   const pagination = req.body.pagination ? parseInt(req.body.pagination) : 10;
