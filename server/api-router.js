@@ -178,7 +178,6 @@ router.patch("/update-issue", async (req, res) => {
 router.get("/collections", async (req, res) => {
   // get the data from MongoDB
   const client = await connectClient();
-  //const collections = await client.collection("issues").distinct("collections");
   const collections = await client
     .collection("issues")
     .aggregate([
