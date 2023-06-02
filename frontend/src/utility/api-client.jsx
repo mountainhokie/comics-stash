@@ -146,3 +146,15 @@ export const updateIssue = async (issueID, issueField, issueValue) => {
     });
   return "Yes";
 };
+
+// Gets Publisher Data from MongoDb for Data Visualization
+export const getPublishers = async () => {
+  const resp = await axios.get(`${API_SERVER_URL}/publishers`);
+  return resp.data.publishers;
+};
+
+// Gets Publisher Data from MongoDb for Data Visualization
+export const getHorror = async () => {
+  const resp = await axios.get(`${API_SERVER_URL}/horror`);
+  return resp.data.collections;
+};

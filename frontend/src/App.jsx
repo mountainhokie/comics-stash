@@ -11,6 +11,7 @@ import AllIssues from "./pages/AllIssues";
 import Collection from "./pages/Collection";
 import AllCollections from "./pages/AllCollections";
 import Volume from "./pages/Volume";
+import DataVisualization from "./pages/DataVisualization";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/all-issues" element={<AllIssues />} />
           <Route path="/collection/:collectionName" element={<Collection />} />
           <Route path="/all-collections/" element={<AllCollections />} />
+          <Route path="/data-visualization/" element={<DataVisualization />} />
         </Routes>
       </div>
       <Footer />

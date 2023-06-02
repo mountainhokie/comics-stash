@@ -57,6 +57,12 @@ export default function Navbar() {
             >
               View Collections
             </Link>
+            <Link
+              to="/data-visualization"
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+            >
+              Data Visualization
+            </Link>
           </div>
         </div>
       </nav>

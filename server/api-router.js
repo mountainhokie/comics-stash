@@ -215,4 +215,46 @@ router.get("/collection-issues/:collectionName", async (req, res) => {
   res.send({ issues });
 });
 
+// Get All Publishers
+router.get("/publishers", async (req, res) => {
+  // get the data from MongoDB
+  const client = await connectClient();
+  const publishers = await client
+    .collection("issues")
+    .aggregate([
+      { $unwind: "$publisher" },
+      { $group: { _id: "$publisher", count: { $sum: 1 } } },
+      { $sort: { _id: -1 } },
+    ])
+    .toArray();
+  res.send({ publishers });
+});
+
+// Get Comics that have the Horror label
+router.get("/horror", async (req, res) => {
+  // get the data from MongoDB
+  const client = await connectClient();
+  const collections = await client
+    .collection("issues")
+    //.find({ "collections.label": { $eq: "Horror" } })
+    .aggregate([
+      {
+        $facet: {
+          "categorizedByPublishers": [
+            { $match: { "collections.label": "Horror" } },
+            { $group: { _id: "$publisher", count: { $sum: 1 } } },
+            { $sort: { _id: -1 } },
+          ],
+          "totalNumIssues": [
+            {
+              $count: "total",
+            },
+          ],
+        },
+      },
+    ])
+    .toArray();
+  res.send({ collections });
+});
+
 module.exports = router;
