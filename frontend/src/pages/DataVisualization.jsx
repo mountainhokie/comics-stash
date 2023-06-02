@@ -20,7 +20,7 @@ const DataVisualization = () => {
 
   useEffect(() => {
     getHorror().then((horData) => {
-      setHorData(horData[0].categorizedByCollections);
+      setHorData(horData[0].categorizedByPublishers);
     });
   }, []);
 
