@@ -41,27 +41,51 @@ export default function Navbar() {
           <div className="text-sm lg:flex-grow">
             <Link
               to="/advanced-search"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+              className="relative group py-3 px-2 block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
-              Advanced Search
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 left-1/2 h-full w-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-gray-700 opacity-0 transition-all group-hover:w-full group-hover:opacity-100"
+              />
+              <span className="relative group-hover:text-white">
+                Advanced Search
+              </span>
             </Link>
             <Link
               to="/all-issues"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+              className="relative group py-3 px-2 block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
-              View Issues
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 left-1/2 h-full w-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-gray-700 opacity-0 transition-all group-hover:w-full group-hover:opacity-100"
+              />
+              <span className="relative group-hover:text-white">
+                View Issues
+              </span>
             </Link>
             <Link
               to="/all-collections"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+              className="relative group py-3 px-2 block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
-              View Collections
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 left-1/2 h-full w-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-gray-700 opacity-0 transition-all group-hover:w-full group-hover:opacity-100"
+              />
+              <span className="relative group-hover:text-white">
+                View Collections
+              </span>
             </Link>
             <Link
               to="/data-visualization"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+              className="relative group py-3 px-2 block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
-              Data Visualization
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 left-1/2 h-full w-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-gray-700 opacity-0 transition-all group-hover:w-full group-hover:opacity-100"
+              />
+              <span className="relative group-hover:text-white">
+                Data Visualization
+              </span>
             </Link>
           </div>
         </div>

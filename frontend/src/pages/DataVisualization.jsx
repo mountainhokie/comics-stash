@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getHorror, getPublishers } from "../utility/api-client";
 import { BarChart } from "../components/charts/BarChart";
+import { PieChart } from "../components/charts/PieChart";
 
 const DataVisualization = () => {
   const [pubData, setPubData] = useState([]);
@@ -21,6 +22,7 @@ const DataVisualization = () => {
   useEffect(() => {
     getHorror().then((horData) => {
       setHorData(horData[0].categorizedByPublishers);
+      console.log(horData[0].categorizedByPublishers);
     });
   }, []);
 
@@ -28,7 +30,7 @@ const DataVisualization = () => {
     <div className="collection mt-16 mx-auto max-w-screen-lg pl-4 pr-4">
       <h1 className="mb-8 text-3xl">Data Visualization</h1>
 
-      <h2 className="mb-8 text-2xl">Comics By Publisher</h2>
+      <h2 className="mb-8 text-2xl">Comics by Publisher</h2>
       <div className="chart mb-16">
         <BarChart
           data={pubData}
@@ -40,15 +42,15 @@ const DataVisualization = () => {
         />
       </div>
 
-      <h2 className="mb-8 text-2xl">Comics Labeled as Horror Comics</h2>
+      <h2 className="mb-8 text-2xl">Comics labeled as Horror by Publisher</h2>
       <div className="chart mb-16">
-        <BarChart
+        <PieChart
           data={horData}
-          width={width}
+          width={800}
           height={height}
           margin={margin}
-          xAccessor={xAccessor}
-          yAccessor={yAccessor}
+          outterRadius={300}
+          innerRadius={0}
         />
       </div>
     </div>
